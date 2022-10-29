@@ -38,7 +38,7 @@ st.sidebar.write(img_mat.shape)
 U, S, V = np.linalg.svd(img_mat)
 
 # Draw a slider
-n_dim = st.slider("SVD rank(n)",0, int(S.shape[0]/10),5)
+n_dim = st.slider("SVD rank(n)",0, int(S.shape[0]/5),5)
 re_img = np.matrix(U[:, :n_dim]) * np.diag(S[:n_dim]) * np.matrix(V[:n_dim, :])  
 p = (n_dim * re_img.shape[0] + n_dim+ n_dim * re_img.shape[1])/(re_img.shape[0]*re_img.shape[1])
 st.info("Compare to original image : " +str(round(p*100,2)) + "% (approx) as much as space used. ")
