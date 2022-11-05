@@ -53,9 +53,9 @@ re_image = (np.dstack((blueI, greenI, redI))).astype(np.uint8)
 # Dump the image
 col1, col2 = st.columns(2)
 with col1:
-    st.image(image)
+    st.image(image,use_column_width="always")
 with col2:
-    st.image(re_image)
+    st.image(re_image, use_column_width="always")
 
 # with st.expander("Best number of components"):
 #     # https://www.kaggle.com/code/mirzarahim/introduction-to-pca-image-compression-example/notebook
