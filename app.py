@@ -55,7 +55,6 @@ plt.imshow(re_img, cmap="gray")
 plt.title(title)
 st.pyplot(fig)
 
-    
 # Resources 
 # https://www.frankcleary.com/svdimage/
 
