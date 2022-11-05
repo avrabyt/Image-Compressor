@@ -1,11 +1,14 @@
 # Image-Compressor
-Image compression using Singular Value Decomposition (SVD) method.
+Image compression using Singular Value Decomposition (SVD) and Principal Component Analysis (PCA) method.
 
 Try the app [here](https://svd-image-compression.streamlitapp.com/).
 
-# Demo 
+# 1. Demo - SVD 
 ![Gif](Resources/streamlit-app-2022-10-29-14-10-80.gif)
 
+# 2. Demo - PCA
+
+![GifPCA](Resources/pca.gif)
 ## Video tutorial
 <details>
   <summary>See the tutorial video</summary>
