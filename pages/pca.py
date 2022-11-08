@@ -19,22 +19,25 @@ if uploaded_file is not None:
     image = cv2.imdecode(file_bytes, 1)
 
 else:
-    # This button doesnot exist when file upload exists
-    # Try new examples from Image directory 
-    # Updates session state variable random file 
+#     # This button doesnot exist when file upload exists
+#     # Try new examples from Image directory 
+#     # Updates session state variable random file 
     if st.sidebar.button("Try New Example Image!"):
         random_file = random.choice(os.listdir("Image"))
         st.session_state.random_file = random_file
     
-    # Opens file from the session state variable
+#     # Opens file from the session state variable
     st.sidebar.info("Example file : " + st.session_state.random_file)
     image = cv2.imread("Image/{}".format(st.session_state.random_file))
+    # image
 
-# Split the Image into RGB arrays
+# # Split the Image into RGB arrays
 blue,green,red = cv2.split(image)
+# st.write(type(blue))
 st.sidebar.write(blue.shape)
 # Compute PCA for Individual arrays 
 pca_components = st.slider("No of PCA components",0, blue.shape[0],20)
+# pca_components = 50
 pca = PCA(pca_components)
 # pca.fit(image)
 # Transform each channel and then Inverse it
@@ -47,14 +50,16 @@ greenI = pca.inverse_transform(greenT)
 blueT = pca.fit_transform(blue)
 blueI = pca.inverse_transform(blueT)
 
-# Reconstruct the Image
+# # Reconstruct the Image
 re_image = (np.dstack((blueI, greenI, redI))).astype(np.uint8)
 
 # Dump the image
 col1, col2 = st.columns(2)
 with col1:
+    st.header("Original Image")
     st.image(image,use_column_width="always")
 with col2:
+    st.header("Compressed Image")
     st.image(re_image, use_column_width="always")
 
 # with st.expander("Best number of components"):
@@ -67,11 +72,10 @@ with col2:
 #     pca = PCA()
 #     pca.fit(image_bw)
 #     # Getting the cumulative variance
-
 #     var_cumu = np.cumsum(pca.explained_variance_ratio_)*100
-
 #     # How many PCs explain 95% of the variance?
 #     k = np.argmax(var_cumu>95)
+#     #######
 #     st.write(k)
 #     plt.figure(figsize=[10,5])
 #     plt.title('Cumulative Explained Variance explained by the components')
@@ -80,4 +84,5 @@ with col2:
 #     plt.axvline(x=k, color="k", linestyle="--")
 #     plt.axhline(y=95, color="r", linestyle="--")
 #     ax = plt.plot(var_cumu)
+#     plt.show()
 #     st.pyplot(plt)
